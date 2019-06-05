@@ -31,20 +31,21 @@ install_cass() {
     case "$1" in
         ycsb)
             install_ycsb
+            return
             ;;
         abd | abdOpt)
             git clone https://github.com/ZezhiWang/cassandra.git
-            cd cassandra
-            git checkout $1
             ;;
         0d4* | treasErasure | ErasureMemory)  # 0d464cd25ffbb5734f96c3082f9cc35011de3667
             git clone https://github.com/yingjianwu199868/cassandra.git
-            cd cassandra
-            git checkout $1
             ;;
     esac
+
+    cd cassandra
+    git checkout $1
     ant build
     git status
+
     cd
 }
 

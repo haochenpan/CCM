@@ -6,16 +6,26 @@
 # $4 == field length (in bytes), 10, 100, 500, 1000, 5000, 10000 (cannot go beyond)
 # $5 == load | run | loadall
 
-hosts=10.142.0.52,10.142.0.53,10.142.0.54,10.142.0.55,10.142.0.56
+hosts=10.142.0.62,10.142.0.63,10.142.15.192,10.142.15.193,10.142.15.194  #abd
+hosts=10.142.15.204,10.142.15.205,10.142.15.206,10.142.15.207,10.142.15.208  #opt
+hosts=10.142.15.212,10.142.15.213,10.142.15.214,10.142.15.215,10.142.15.216  #all
+hosts=10.142.15.199,10.142.15.200,10.142.15.201,10.142.15.202,10.142.15.203  #dsk
+hosts=10.142.15.223,10.142.15.224,10.142.15.225,10.142.15.226,10.142.15.227  #quo
 
-load_read_cl=ALL
-load_write_cl=ALL
-run_read_cl=ALL
-run_write_cl=ALL
+
+load_read_cl=QUORUM
+load_write_cl=QUORUM
+run_read_cl=QUORUM
+run_write_cl=QUORUM
+
+#load_read_cl=ALL
+#load_write_cl=ALL
+#run_read_cl=ALL
+#run_write_cl=ALL
 
 num_of_clients=3
-row_cnt=600  # in total
-ops_cnt=30000 # per client
+row_cnt=30000  # in total
+ops_cnt=100000  # per client
 field_count=1
 thread_index=$1
 thread_count=$2  # thread count per client

@@ -76,7 +76,7 @@ function download_data() {
 }
 
 function rm_data() {
-  ssh -n -o StrictHostKeyChecking=no -i $sk_path $username@$1 "cd $ycsb_path; rm data*"
+  ssh -n -o StrictHostKeyChecking=no -i $sk_path $username@$1 "cd ~/VMCM/data; rm data*"
 }
 
 function download_all() {
