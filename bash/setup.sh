@@ -12,9 +12,11 @@ install_java() {
 }
 
 install_basics() {
+    install_java
     sudo apt-get update && sudo apt-get upgrade -y
     sudo apt-get install -y build-essential linux-headers-$(uname -r)
     sudo apt-get install -y make git zip ant
+    sudo apt-get install -y vnstat
 }
 
 install_ycsb() {
@@ -26,11 +28,20 @@ install_ycsb() {
 
 install_cass() {
     cd
-    git clone https://github.com/yingjianwu199868/cassandra.git
+    case "$1" in
+        ycsb)
+            install_ycsb
+            ;;
+        abd | abdOpt)
+            git clone https://github.com/ZezhiWang/cassandra.git
+            git checkout $1
+            ;;
+        0d4* | treasErasure | ErasureMemory)  # 0d464cd25ffbb5734f96c3082f9cc35011de3667
+            git clone https://github.com/yingjianwu199868/cassandra.git
+            git checkout $1
+            ;;
+    esac
     cd cassandra
-    git checkout $1
-#    git checkout 0d464cd25ffbb5734f96c3082f9cc35011de3667
-#    git checkout treasErasure
     ant build
     git status
     cd
@@ -38,14 +49,7 @@ install_cass() {
 
 
 copy_key
-install_java
 install_basics
-if [ "$1" = "ycsb" ]; then
-    echo "install ycsb"
-    install_ycsb
-else
-    echo "install cass"
-    install_cass $1
-fi
+install_cass $1
 
 

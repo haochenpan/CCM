@@ -7,11 +7,11 @@ ycsb_path="~/ycsb-0.15.0"
 cqlsh_path="~/cassandra/bin/cqlsh"
 
 
-cqlsh_server_local=10.142.0.47
+cqlsh_server_local=10.142.0.52
 cqlsh_server=${test_cluster[0]}
 ycsb_1=${test_cluster_ycsb[0]}
-ycsb_2=${test_cluster_ycsb[0]}
-ycsb_3=${test_cluster_ycsb[0]}
+ycsb_2=${test_cluster_ycsb[1]}
+ycsb_3=${test_cluster_ycsb[2]}
 
 
 # nohup /bin/bash run_bench.sh &

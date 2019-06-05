@@ -6,14 +6,14 @@
 # $4 == field length (in bytes), 10, 100, 500, 1000, 5000, 10000 (cannot go beyond)
 # $5 == load | run | loadall
 
-hosts=10.142.0.47
+hosts=10.142.0.52,10.142.0.53,10.142.0.54,10.142.0.55,10.142.0.56
 
 load_read_cl=ALL
 load_write_cl=ALL
 run_read_cl=ALL
 run_write_cl=ALL
 
-num_of_clients=1+
+num_of_clients=3
 row_cnt=600  # in total
 ops_cnt=30000 # per client
 field_count=1
