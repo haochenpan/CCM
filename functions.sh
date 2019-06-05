@@ -2,7 +2,12 @@
 . credentials.sh
 
 function change_seed() {
-  ssh -o StrictHostKeyChecking=no -i $sk_path $username@$1 'bash -s' < ./action/change_seed.sh
+  ssh -o StrictHostKeyChecking=no -i $sk_path $username@$1 'bash -s' < ./bash/change_seed.sh
+}
+
+function load_cass() {
+
+  ssh -o StrictHostKeyChecking=no -i $sk_path $username@$1 'bash -s' < ./bash/load.sh
 }
 
 function start_cass() {
@@ -18,15 +23,4 @@ function stop_cass() {
 function clear_cass() {
   do_action="rm ~/cassandra/data -rf; rm ~/cassandra/logs -rf"
   ssh -f -o StrictHostKeyChecking=no -i $sk_path $username@$1 $do_action
-}
-
-function download_data() {
-  ssh -n -o StrictHostKeyChecking=no -i $sk_path $username@$1 \
-  "cd $ycsb_path; zip data_${2}_${1}.zip data_t*"
-  scp -i $sk_path -o StrictHostKeyChecking=no $username@$1:$ycsb_path/data_${2}_${1}.zip  ./data
-}
-
-function rm_data() {
-  ssh -n -o StrictHostKeyChecking=no -i $sk_path $username@$1 \
-  "cd $ycsb_path; rm data*"
 }

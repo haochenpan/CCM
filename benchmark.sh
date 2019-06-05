@@ -29,8 +29,8 @@ function run_trail_at_client() {
 
 function run_at_all_clients() {
   run_trail_at_client 0 "$1" "$2" "$3" "$4" "$ycsb_1" &
-  run_trail_at_client 1 "$1" "$2" "$3" "$4" "$ycsb_2" &
-  run_trail_at_client 2 "$1" "$2" "$3" "$4" "$ycsb_3" &
+#  run_trail_at_client 1 "$1" "$2" "$3" "$4" "$ycsb_2" &
+#  run_trail_at_client 2 "$1" "$2" "$3" "$4" "$ycsb_3" &
   wait
 }
 
@@ -39,6 +39,7 @@ function run_wl() {
   # $2 == read portion: 1, 3, 5, 7, 9
   # $3 == field length (in bytes), 10, 100, 500, 1000, 5000, 10000 (cannot go beyond)
     truncate
+    describe
     run_at_all_clients "$1" "$2" "$3" load
     run_at_all_clients "$1" "$2" "$3" run
 }
@@ -85,7 +86,7 @@ function download_all() {
     download_data $ycsb_3 $1
 }
 
-function remote_all() {
+function remove_all() {
     rm_data $ycsb_1
     rm_data $ycsb_2
     rm_data $ycsb_3

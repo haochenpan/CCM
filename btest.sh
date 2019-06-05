@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 . ../cass-cluster-mgmt/credentials.sh
 . benchmark.sh
 

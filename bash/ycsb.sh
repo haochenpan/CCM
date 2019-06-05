@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
+
 # $1 == client index, 0, 1, 2, 3, 4
 # $2 == thread count, 1, 2, 3, 4, 5, ...
 # $3 == read portion: 1, 3, 5, 7, 9
 # $4 == field length (in bytes), 10, 100, 500, 1000, 5000, 10000 (cannot go beyond)
 # $5 == load | run | loadall
 
-hosts=10.0.0.1,10.0.0.2,10.0.0.3,10.0.0.4,10.0.0.5
+hosts=10.142.0.47
 
 load_read_cl=ALL
 load_write_cl=ALL
@@ -48,7 +49,7 @@ case $run_switch in
   -p recordcount=$row_cnt -p operationcount=$ops_cnt \
   -p hosts=$hosts -p fieldcount=$field_count -p fieldlength=$field_length \
   -p insertstart=$insert_start -p insertcount=$insert_count \
-  -threads 8
+  -threads 1
   ;;
   run)
   ~/ycsb-0.15.0/bin/ycsb run cassandra-cql -P ~/VMCM/ycsb/workload_${read_portion} \

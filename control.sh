@@ -24,22 +24,18 @@ function misc() {
 }
 
 function prep_ycsb() {
-   scp -o StrictHostKeyChecking=no -i $sk_path ./action/"run_trail.sh" $username@$1:$ycsb_path
+   scp -o StrictHostKeyChecking=no -i $sk_path ./bash/ycsb.sh $username@$1:~/VMCM/bash
 }
 
-for i in "${steven_wan_sbq_3l[@]}"; do
+for i in "${test_cluster[@]}"; do
     echo $i
-#    checkout_abd_base $i
-#    change_switch $i
-#    install_ycsb $i
 #    misc $i
 #    change_seed $i
+#        load_cass $1
 #     clear_cass $i
      start_cass $i
     # stop_cass $i
-#     download_data $i 37
-    # rm_data $i
-    # misc $i
+#     misc $i
 #      prep_ycsb $i
     #
 done

@@ -32,6 +32,7 @@ install_cass() {
 #    git checkout 0d464cd25ffbb5734f96c3082f9cc35011de3667
 #    git checkout treasErasure
     ant build
+    git status
     cd
 }
 
