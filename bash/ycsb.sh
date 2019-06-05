@@ -13,7 +13,7 @@ load_write_cl=ALL
 run_read_cl=ALL
 run_write_cl=ALL
 
-num_of_clients=3
+num_of_clients=1+
 row_cnt=600  # in total
 ops_cnt=30000 # per client
 field_count=1

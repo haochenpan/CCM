@@ -33,10 +33,10 @@ for i in "${test_cluster[@]}"; do
 #    change_seed $i
 #        load_cass $1
 #     clear_cass $i
-     start_cass $i
+#     start_cass $i
     # stop_cass $i
 #     misc $i
-#      prep_ycsb $i
+      prep_ycsb $i
     #
 done
 

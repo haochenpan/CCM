@@ -72,8 +72,8 @@ function run_wl_vary_size() {
 }
 
 function download_data() {
-  ssh -n -o StrictHostKeyChecking=no -i $sk_path $username@$1 "cd $ycsb_path; zip data_${2}_${1}.zip data_t*"
-  scp -i $sk_path -o StrictHostKeyChecking=no $username@$1:$ycsb_path/data_${2}_${1}.zip  ./data/
+  ssh -n -o StrictHostKeyChecking=no -i $sk_path $username@$1 "cd ~/VMCM/data; zip data_${2}_${1}.zip data_cass_t*"
+  scp -i $sk_path -o StrictHostKeyChecking=no $username@$1:~/VMCM/data/data_${2}_${1}.zip  ./data/
 }
 
 function rm_data() {
