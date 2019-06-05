@@ -80,16 +80,14 @@ function rm_data() {
 }
 
 function download_all() {
-    download_data $ycsb_1 $1 &
-    download_data $ycsb_2 $1 &
-    download_data $ycsb_3 $1 &
-    wait
+    download_data $ycsb_1 $1
+    download_data $ycsb_2 $1
+    download_data $ycsb_3 $1
 }
 
 function remove_all() {
-    rm_data $ycsb_1 &
-    rm_data $ycsb_2 &
-    rm_data $ycsb_3 &
-    wait
+    rm_data $ycsb_1
+    rm_data $ycsb_2
+    rm_data $ycsb_3
 }
 

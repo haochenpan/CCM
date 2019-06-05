@@ -1,4 +1,4 @@
-### best practice
+### current project: cassandra benchmarking's best practice
 ```
 On GCP: create server & client virtual instances
 On all remote instances: run appropriate instance init code
@@ -11,7 +11,7 @@ On a server instance: load table schema
 Local: run btest.sh
 On all server instances: vnstat clear & start
 On GCP: upload servers.sh, credentials.sh, and run_bench.sh to a remote controller (and benchmark.sh for the first time)
-On the remote controller instance: nohup /bin/bash run_bench.sh
+On the remote controller instance: . run_bench.sh &
 
 ```
 
@@ -64,11 +64,10 @@ sudo /etc/init.d/vnstat start
 ```
 
 ### remote controller instance
-shoud have a similar codebase, i.e. in ~/VMCM
+shoud have a similar codebase, i.e. in ~/VMCM:
 
 ```
 |- setup/ -- id
-| 
 |- data/
 |- benchmark.sh
 |- credentials.sh
@@ -76,3 +75,13 @@ shoud have a similar codebase, i.e. in ~/VMCM
 |- servers.sh
 ```
         
+### other things
+
+download from the controller to local:
+`scp -i ./setup/id -r panhi_bc_edu@35.231.79.157:VMCM/data ./data`
+
+
+### known issues
+SSH private key needs `chmod 400 id` before use.
+In Ubuntu 14.04, sometimes nohup bg jobs (e.g. run_bench.sh) hang in ssh sessions.
+
