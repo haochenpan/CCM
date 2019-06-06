@@ -6,38 +6,40 @@ fig_size = (7, 7)
 legend_prop = {'size': 9}
 legend_ncol = 3
 data_folder = "./data/data"
-available_tags = ['average read', '95 percentile read', 'average write', '95 percentile write']
+available_tags = ['average_read', '95_percentile_read', 'average_write', '95_percentile_write']
 markers = ["o", "v", "^", "s", "P", "*", "X", "D", "p"]
-colors = ['tab:green', 'tab:purple', 'tab:orange', 'tab:brown', 'tab:red', 'tab:cyan', 'tab:pink', 'tab:gray',
-          'tab:blue']
+colors = ['tab:purple', 'tab:orange', 'tab:brown', 'tab:red', 'tab:cyan', 'tab:pink', 'tab:gray', 'tab:blue']
+# colors = ['tab:orange', 'tab:red', 'tab:cyan', 'tab:gray', 'tab:blue', 'tab:green']
 linestyle = '-'
 linewidth = 1.1
 markersize = 8
 fontsize = 12
 
-vary_txs_list = [2, 4, 6, 8, 10, 12]
-vary_szs_list = [1, 4, 16, 64, 256, 1024]
-varu_rps_list = [1, 3, 5, 7, 9]
+
+# vary_txs_list = [2, 4, 6, 8, 10, 12]
+# vary_szs_list = [1, 4, 16, 64, 256, 1024]
+# vary_rps_list = [1, 3, 5, 7, 9]
 
 
-def vary_txs_x_label(num_of_server, size, rp):
-    return ("threads/client\n"
-            f"(LAN, {num_of_server} Cass* servers, "
-            f"{size} byte data, "
-            f"write ratio: {(10 - rp) / 10})")
+#
+# def vary_txs_x_label(num_of_server, size, rp):
+#     return ("threads/client\n"
+#             f"(LAN, {num_of_server} Cass* servers, "
+#             f"{size} byte data, "
+#             f"write ratio: {(10 - rp) / 10})")
 
 
 def vary_szs_x_label(num_of_server, tx, rp):
     return ("value size (B)\n"
-            f"(LAN, {num_of_server} Cass* servers, "
-            f"{tx} threads/client, "
+            f"(LAN, {num_of_server} Cassandra servers, "
+            f"3 1-thread YCSB generators,"
             f"write ratio: {(10 - rp) / 10})")
 
 
 def vary_rps_x_label(num_of_server, tx, size):
     return ("write ratio\n"
-            f"(LAN, {num_of_server} Cass* servers, "
-            f"{tx} threads/client, "
+            f"(LAN, {num_of_server} Cassandra servers, "
+            f"3 1-thread YCSB generators,"
             f"{size} byte data)")
 
 
@@ -85,17 +87,18 @@ def get_combined_throughput(files):
     return round(sum(tho_list_all_clients), 2)  # the sum of avgs
 
 
-def get_throughput_vary_thread(exp_idx, txs, size, rp):
-    dir_list = get_all_exp_folders(exp_idx)
-    plot_list = []
-
-    for tx in txs:
-        files = list(map(lambda dir_name: os.path.join(dir_name, f'data_cass_t{tx}_r{rp}_s{size}.txt'), dir_list))
-        assert len(files) == 3, "3 clients"
-        tho = get_combined_throughput(files)
-        plot_list.append(tho)
-
-    return plot_list
+#
+# def get_throughput_vary_thread(exp_idx, txs, size, rp):
+#     dir_list = get_all_exp_folders(exp_idx)
+#     plot_list = []
+#
+#     for tx in txs:
+#         files = list(map(lambda dir_name: os.path.join(dir_name, f'data_cass_t{tx}_r{rp}_s{size}.txt'), dir_list))
+#         assert len(files) == 3, "3 clients"
+#         tho = get_combined_throughput(files)
+#         plot_list.append(tho)
+#
+#     return plot_list
 
 
 def get_throughput_vary_size(exp_idx, tx, sizes, rp):
@@ -188,25 +191,26 @@ def micro_to_milli(lats):
     return list(map(lambda x: x / 1000, lats))
 
 
-def get_latency_vary_thread(exp_idx, txs, size, rp, tag):
-    assert tag in available_tags
-
-    dir_list = get_all_exp_folders(exp_idx)
-    txs_plot_list = []
-
-    for tx in txs:
-        files = list(map(lambda dir_name: os.path.join(dir_name, f'data_t{tx}_r{rp}_s{size}.txt'), dir_list))
-        assert len(files) == 3, "3 clients"
-        ra, r9, ua, u9 = get_combined_latencies(files, tag)
-        if tag == available_tags[0]:
-            txs_plot_list.append(ra)
-        elif tag == available_tags[1]:
-            txs_plot_list.append(r9)
-        elif tag == available_tags[2]:
-            txs_plot_list.append(ua)
-        elif tag == available_tags[3]:
-            txs_plot_list.append(u9)
-    return txs_plot_list
+#
+# def get_latency_vary_thread(exp_idx, txs, size, rp, tag):
+#     assert tag in available_tags
+#
+#     dir_list = get_all_exp_folders(exp_idx)
+#     txs_plot_list = []
+#
+#     for tx in txs:
+#         files = list(map(lambda dir_name: os.path.join(dir_name, f'data_t{tx}_r{rp}_s{size}.txt'), dir_list))
+#         assert len(files) == 3, "3 clients"
+#         ra, r9, ua, u9 = get_combined_latencies(files, tag)
+#         if tag == available_tags[0]:
+#             txs_plot_list.append(ra)
+#         elif tag == available_tags[1]:
+#             txs_plot_list.append(r9)
+#         elif tag == available_tags[2]:
+#             txs_plot_list.append(ua)
+#         elif tag == available_tags[3]:
+#             txs_plot_list.append(u9)
+#     return txs_plot_list
 
 
 def get_latency_vary_size(exp_idx, tx, sizes, rp, tag):
@@ -237,7 +241,7 @@ def get_latency_vary_rp(exp_idx, tx, size, rps, tag):
     txs_plot_list = []
 
     for rp in rps:
-        files = list(map(lambda dir_name: os.path.join(dir_name, f'data_t{tx}_r{rp}_s{size}.txt'), dir_list))
+        files = list(map(lambda dir_name: os.path.join(dir_name, f'data_cass_t{tx}_r{rp}_s{size}.txt'), dir_list))
         assert len(files) == 3, "3 clients"
         ra, r9, ua, u9 = get_combined_latencies(files, tag)
         if tag == available_tags[0]:
@@ -251,25 +255,26 @@ def get_latency_vary_rp(exp_idx, tx, size, rps, tag):
     return txs_plot_list
 
 
-def plot_throughput_vary_thread(exp_idxs, labels, txs, size, rp, num_of_server, fig_num):
-    assert len(exp_idxs) == len(labels)
-    alo_lists = [get_throughput_vary_thread(idx, txs, size, rp) for idx in exp_idxs]
-
-    fig, axs = plt.subplots(figsize=fig_size)
-
-    for j, alo_list in enumerate(alo_lists):
-        axs.plot(txs, alo_list, colors[j], marker=markers[j], label=labels[j],
-                 linestyle=linestyle, linewidth=linewidth, markersize=markersize)
-
-    axs.legend(loc="upper left", ncol=legend_ncol, prop=legend_prop)  ##
-    axs.set_xlabel(vary_txs_x_label(num_of_server, size, rp), fontsize=fontsize)
-    plt.ylim(0, 45000)
-
-    axs.set_ylabel("throughput (ops/sec)", fontsize=fontsize)
-    plt.grid(color='tab:gray', linestyle=':', linewidth=0.8)
-    plt.tight_layout()
-    plt.savefig(f"LAN {fig_num} throughput, vary thread, {num_of_server} svrs")
-    plt.show()
+#
+# def plot_throughput_vary_thread(exp_idxs, labels, txs, size, rp, num_of_server, fig_num):
+#     assert len(exp_idxs) == len(labels)
+#     alo_lists = [get_throughput_vary_thread(idx, txs, size, rp) for idx in exp_idxs]
+#
+#     fig, axs = plt.subplots(figsize=fig_size)
+#
+#     for j, alo_list in enumerate(alo_lists):
+#         axs.plot(txs, alo_list, colors[j], marker=markers[j], label=labels[j],
+#                  linestyle=linestyle, linewidth=linewidth, markersize=markersize)
+#
+#     axs.legend(loc="upper left", ncol=legend_ncol, prop=legend_prop)  ##
+#     axs.set_xlabel(vary_txs_x_label(num_of_server, size, rp), fontsize=fontsize)
+#     plt.ylim(0, 45000)
+#
+#     axs.set_ylabel("throughput (ops/sec)", fontsize=fontsize)
+#     plt.grid(color='tab:gray', linestyle=':', linewidth=0.8)
+#     plt.tight_layout()
+#     plt.savefig(f"LAN {fig_num} throughput, vary thread, {num_of_server} svrs")
+#     plt.show()
 
 
 def plot_throughput_vary_size(exp_idxs, labels, tx, sizes, rp, num_of_server, fig_num):
@@ -294,7 +299,7 @@ def plot_throughput_vary_size(exp_idxs, labels, tx, sizes, rp, num_of_server, fi
     axs.set_ylabel("throughput (ops/sec)", fontsize=fontsize)
     plt.grid(color='tab:gray', linestyle=':', linewidth=0.8)
     plt.tight_layout()
-    plt.savefig(f"LAN {fig_num} throughput, vary size, {num_of_server} svrs")
+    plt.savefig(f"LAN_{fig_num}_throughput,_vary_size,_{num_of_server}_svrs")
     plt.show()
 
 
@@ -313,36 +318,37 @@ def plot_throughput_vary_rp(exp_idxs, labels, tx, size, rps, num_of_server, fig_
     axs.legend(loc='upper left', ncol=legend_ncol, prop=legend_prop)  ##
     axs.set_xlabel(vary_rps_x_label(num_of_server, tx, size), fontsize=fontsize)
     axs.set_xticks(wps)
-    plt.ylim(0, 45000)
+    plt.ylim(0, 5000)
 
     axs.set_ylabel("throughput (ops/sec)", fontsize=fontsize)
     plt.grid(color='tab:gray', linestyle=':', linewidth=0.8)
     plt.tight_layout()
-    plt.savefig(f"LAN {fig_num} throughput, vary write, {num_of_server} svrs")
+    plt.savefig(f"LAN_{fig_num}_throughput,_vary_write,_{num_of_server}_svrs")
     plt.show()
 
 
-def plot_latency_vary_thread(exp_idxs, labels, txs, size, rp, num_of_server, tag, fig_num):
-    assert len(exp_idxs) == len(labels)
-    alo_lists = [get_latency_vary_thread(idx, txs, size, rp, tag) for idx in exp_idxs]
-
-    fig, axs = plt.subplots(figsize=fig_size)
-
-    for j, alo_list in enumerate(alo_lists):
-        axs.plot(txs, alo_list, colors[j], marker=markers[j], label=labels[j],
-                 linestyle=linestyle, linewidth=linewidth, markersize=markersize)
-
-    axs.legend(loc='upper left', ncol=legend_ncol, prop=legend_prop)  ##
-    axs.set_xlabel(vary_txs_x_label(num_of_server, size, rp), fontsize=fontsize)
-
-    plt.yticks(np.arange(0, 6500, step=500))
-    # plt.yticks(np.arange(0, 4500, step=500))
-
-    axs.set_ylabel(f"{tag} latency (µs)", fontsize=fontsize)
-    plt.grid(color='tab:gray', linestyle=':', linewidth=0.8)
-    plt.tight_layout()
-    plt.savefig(f"LAN {fig_num} latency, vary thread, {num_of_server} svrs, {tag}")
-    plt.show()
+#
+# def plot_latency_vary_thread(exp_idxs, labels, txs, size, rp, num_of_server, tag, fig_num):
+#     assert len(exp_idxs) == len(labels)
+#     alo_lists = [get_latency_vary_thread(idx, txs, size, rp, tag) for idx in exp_idxs]
+#
+#     fig, axs = plt.subplots(figsize=fig_size)
+#
+#     for j, alo_list in enumerate(alo_lists):
+#         axs.plot(txs, alo_list, colors[j], marker=markers[j], label=labels[j],
+#                  linestyle=linestyle, linewidth=linewidth, markersize=markersize)
+#
+#     axs.legend(loc='upper left', ncol=legend_ncol, prop=legend_prop)  ##
+#     axs.set_xlabel(vary_txs_x_label(num_of_server, size, rp), fontsize=fontsize)
+#
+#     plt.yticks(np.arange(0, 6500, step=500))
+#     # plt.yticks(np.arange(0, 4500, step=500))
+#
+#     axs.set_ylabel(f"{tag} latency (µs)", fontsize=fontsize)
+#     plt.grid(color='tab:gray', linestyle=':', linewidth=0.8)
+#     plt.tight_layout()
+#     plt.savefig(f"LAN {fig_num} latency, vary thread, {num_of_server} svrs, {tag}")
+#     plt.show()
 
 
 def plot_latency_vary_size(exp_idxs, labels, tx, sizes, rp, num_of_server, tag, fig_num):
@@ -360,13 +366,15 @@ def plot_latency_vary_size(exp_idxs, labels, tx, sizes, rp, num_of_server, tag, 
     plt.xscale('log')
     plt.xticks(sizes, tuple(sizes))
     plt.minorticks_off()
-    plt.yticks(np.arange(0, 2000, step=500))
+    plt.yticks(np.arange(0, 2500, step=500))
     # plt.yticks(np.arange(0, 4500, step=500))
+    tag = ' '.join(tag.split("_"))
     axs.set_ylabel(f"{tag} latency (µs)", fontsize=fontsize)
 
     plt.grid(color='tab:gray', linestyle=':', linewidth=0.8)
     plt.tight_layout()
-    plt.savefig(f"LAN {fig_num} latency, vary size, {num_of_server} svrs, {tag}")
+    tag = '_'.join(tag.split(" "))
+    plt.savefig(f"LAN_{fig_num}_latency,_vary_size,_{num_of_server}_svrs,_{tag}")
     plt.show()
 
 
@@ -385,31 +393,34 @@ def plot_latency_vary_rp(exp_idxs, labels, tx, size, rps, num_of_server, tag, fi
     axs.legend(loc='upper left', ncol=legend_ncol, prop=legend_prop)  ##
     axs.set_xlabel(vary_rps_x_label(num_of_server, tx, size), fontsize=fontsize)
     axs.set_xticks(wps)
-    plt.yticks(np.arange(0, 6500, step=500))
+    plt.yticks(np.arange(0, 2500, step=500))
     # plt.yticks(np.arange(0, 4500, step=500))
 
+    tag = ' '.join(tag.split("_"))
     axs.set_ylabel(f"{tag} latency (µs)", fontsize=fontsize)
     plt.grid(color='tab:gray', linestyle=':', linewidth=0.8)
     plt.tight_layout()
-    plt.savefig(f"LAN {fig_num} latency, vary write, {num_of_server} svrs, {tag}")
+    tag = '_'.join(tag.split(" "))
+    plt.savefig(f"LAN_{fig_num}_latency,_vary_write,_{num_of_server}_svrs,_{tag}")
     plt.show()
 
 
 if __name__ == '__main__':
     pass
 
-    index_list_5 = [851, 861, 871, 881, 892]
-    names_list_5 = ['ABD', 'ABD-OPT', 'Cass-All','Treas-OPT-Disk', 'Cass-Quorum']
+    index_list_5 = [852, 862, 872, 892, 881]
+    names_list_5 = ['ABD', 'ABD-Opt', 'Cass-All', 'Cass-Quorum', 'Treas-Opt-Disk']
     vary_size_list = [16, 64, 256, 1024, 2048, 4096]
-    # plot_throughput_vary_size(index_list_5, names_list_5, 1, vary_size_list, 9, 5, 1)
-    # plot_latency_vary_size(index_list_5, names_list_5, 1, vary_size_list, 9, 5, "average read",1)
-    plot_latency_vary_size(index_list_5, names_list_5, 1, vary_size_list, 9, 5, "average write",1)
-
-    # plot_throughput_vary_thread(index_list_3, names_list_3, vary_txs_list, 32, 9, 3, 1)
-    # plot_latency_vary_thread(index_list_3, names_list_3, vary_txs_list, 32, 9, 3, "average read", 2)
-    # plot_throughput_vary_thread(index_list_5, names_list_3, vary_txs_list, 32, 9, 5, 16)
-    # plot_latency_vary_thread(index_list_5, names_list_3, vary_txs_list, 32, 9, 5, "average read", 17)
-    # plot_latency_vary_thread(index_list_5, names_list_5, vary_txs_list, 32, 9, 5, "95 percentile read", 18)
-    # plot_latency_vary_thread(index_list_5, names_list_3, vary_txs_list, 32, 9, 5, "average write", 19)
-    # plot_latency_vary_thread(index_list_5, names_list_5, vary_txs_list, 32, 9, 5, "95 percentile write", 20)
+    vary_rpx_list = [1, 5, 9]
+    plot_throughput_vary_size(index_list_5, names_list_5, 1, vary_size_list, 9, 5, 1)
+    plot_latency_vary_size(index_list_5, names_list_5, 1, vary_size_list, 9, 5, "average_read", 2)
+    plot_latency_vary_size(index_list_5, names_list_5, 1, vary_size_list, 9, 5, "95_percentile_read", 3)
+    plot_latency_vary_size(index_list_5, names_list_5, 1, vary_size_list, 9, 5, "average_write", 4)
+    plot_latency_vary_size(index_list_5, names_list_5, 1, vary_size_list, 9, 5, "95_percentile_write", 5)
+    #
+    plot_throughput_vary_rp(index_list_5, names_list_5, 1, 128, vary_rpx_list, 5, 6)
+    plot_latency_vary_rp(index_list_5, names_list_5, 1, 128, vary_rpx_list, 5, "average_read", 7)
+    plot_latency_vary_rp(index_list_5, names_list_5, 1, 128, vary_rpx_list, 5, "95_percentile_read", 8)
+    plot_latency_vary_rp(index_list_5, names_list_5, 1, 128, vary_rpx_list, 5, "average_write", 9)
+    plot_latency_vary_rp(index_list_5, names_list_5, 1, 128, vary_rpx_list, 5, "95_percentile_write", 10)
 #

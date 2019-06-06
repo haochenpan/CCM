@@ -11,7 +11,7 @@ cluster_name: 'Test Cluster'
 
 # This defines the number of tokens randomly assigned to this node on the ring
 # The more tokens, relative to other nodes, the larger the proportion of data
-# that this node will store. You probably want all nodes to have the same number
+# that this node will store. You probably want all.m.txt nodes to have the same number
 # of tokens assuming they have equal hardware capability.
 #
 # If you leave this unspecified, Cassandra will use the default of 1 token for legacy compatibility,
@@ -184,7 +184,7 @@ credentials_validity_in_ms: 2000
 # The partitioner is responsible for distributing groups of rows (by
 # partition key) across nodes in the cluster.  You should leave this
 # alone for new clusters.  The partitioner can NOT be changed without
-# reloading all data, so when upgrading you should set this to the
+# reloading all.m.txt data, so when upgrading you should set this to the
 # same partitioner you were already using.
 #
 # Besides Murmur3Partitioner, partitioners included for backwards
@@ -301,7 +301,7 @@ key_cache_size_in_mb:
 key_cache_save_period: 14400
 
 # Number of keys from the key cache to save
-# Disabled by default, meaning all keys are going to be saved
+# Disabled by default, meaning all.m.txt keys are going to be saved
 # key_cache_keys_to_save: 100
 
 # Row cache implementation class name. Available implementations:
@@ -335,7 +335,7 @@ row_cache_size_in_mb: 0
 row_cache_save_period: 0
 
 # Number of keys from the row cache to save.
-# Specify 0 (which is the default), meaning all keys are going to be saved
+# Specify 0 (which is the default), meaning all.m.txt keys are going to be saved
 # row_cache_keys_to_save: 100
 
 # Maximum size of the counter cache in memory.
@@ -361,7 +361,7 @@ counter_cache_size_in_mb:
 counter_cache_save_period: 7200
 
 # Number of keys from the counter cache to save
-# Disabled by default, meaning all keys are going to be saved
+# Disabled by default, meaning all.m.txt keys are going to be saved
 # counter_cache_keys_to_save: 100
 
 # saved caches
@@ -390,7 +390,7 @@ commitlog_sync: periodic
 commitlog_sync_period_in_ms: 10000
 
 # The size of the individual commitlog file segments.  A commitlog
-# segment may be archived, deleted, or recycled once all the data
+# segment may be archived, deleted, or recycled once all.m.txt the data
 # in it (potentially from each columnfamily in the system) has been
 # flushed to sstables.
 #
@@ -521,7 +521,7 @@ memtable_allocation_type: heap_buffers
 # can keep up with the ingest rate of a whole server on a single fast disk
 # until it temporarily becomes IO bound under contention typically with compaction.
 # At that point you need multiple flush threads. At some point in the future
-# it may become CPU bound all the time.
+# it may become CPU bound all.m.txt the time.
 #
 # You can tell if flushing is falling behind using the MemtablePool.BlockedOnAllocation
 # metric which should be 0, but will be non-zero if threads are blocked waiting on flushing
@@ -559,7 +559,7 @@ memtable_allocation_type: heap_buffers
 
 # A fixed memory pool size in MB for for SSTable index summaries. If left
 # empty, this will default to 5% of the heap size. If the memory usage of
-# all index summaries exceeds this limit, SSTables with low read rates will
+# all.m.txt index summaries exceeds this limit, SSTables with low read rates will
 # shrink their index summaries in order to meet this limit.  However, this
 # is a best-effort process. In extreme conditions Cassandra may need to use
 # more than this amount of memory.
@@ -774,7 +774,7 @@ concurrent_materialized_view_builders: 1
 # system. The faster you insert data, the faster you need to compact in
 # order to keep the sstable count down, but in general, setting this to
 # 16 to 32 times the rate you are inserting data is more than sufficient.
-# Setting this to 0 disables throttling. Note that this account for all types
+# Setting this to 0 disables throttling. Note that this account for all.m.txt types
 # of compaction, including validation compaction.
 compaction_throughput_mb_per_sec: 16
 
@@ -784,16 +784,16 @@ compaction_throughput_mb_per_sec: 16
 # between the sstables, reducing page cache churn and keeping hot rows hot
 sstable_preemptive_open_interval_in_mb: 50
 
-# Throttles all outbound streaming file transfers on this node to the
+# Throttles all.m.txt outbound streaming file transfers on this node to the
 # given total throughput in Mbps. This is necessary because Cassandra does
 # mostly sequential IO when streaming data during bootstrap or repair, which
 # can lead to saturating the network connection and degrading rpc performance.
 # When unset, the default is 200 Mbps or 25 MB/s.
 # stream_throughput_outbound_megabits_per_sec: 200
 
-# Throttles all streaming file transfer between the datacenters,
+# Throttles all.m.txt streaming file transfer between the datacenters,
 # this setting allows users to throttle inter dc stream throughput in addition
-# to throttling all network stream traffic as configured with
+# to throttling all.m.txt network stream traffic as configured with
 # stream_throughput_outbound_megabits_per_sec
 # When unset, the default is 200 Mbps or 25 MB/s
 # inter_dc_stream_throughput_outbound_megabits_per_sec: 200
@@ -924,7 +924,7 @@ endpoint_snitch: SimpleSnitch
 # controls how often to perform the more expensive part of host score
 # calculation
 dynamic_snitch_update_interval_in_ms: 100 
-# controls how often to reset all host scores, allowing a bad host to
+# controls how often to reset all.m.txt host scores, allowing a bad host to
 # possibly recover
 dynamic_snitch_reset_interval_in_ms: 600000
 # if set greater than zero, this will allow
@@ -947,7 +947,7 @@ dynamic_snitch_badness_threshold: 0.1
 # https://docs.oracle.com/javase/8/docs/technotes/guides/security/jsse/FIPS.html
 #
 # *NOTE* No custom encryption options are enabled at the moment
-# The available internode options are : all, none, dc, rack
+# The available internode options are : all.m.txt, none, dc, rack
 # If set to dc cassandra will encrypt the traffic between the DCs
 # If set to rack cassandra will encrypt the traffic between the racks
 #
@@ -996,8 +996,8 @@ client_encryption_options:
 # compressed.
 # Can be:
 #
-# all
-#   all traffic is compressed
+# all.m.txt
+#   all.m.txt traffic is compressed
 #
 # dc
 #   traffic between different datacenters is compressed
@@ -1016,7 +1016,7 @@ inter_dc_tcp_nodelay: false
 tracetype_query_ttl: 86400
 tracetype_repair_ttl: 604800
 
-# If unset, all GC Pauses greater than gc_log_threshold_in_ms will log at
+# If unset, all.m.txt GC Pauses greater than gc_log_threshold_in_ms will log at
 # INFO level
 # UDFs (user defined functions) are disabled by default.
 # As of Cassandra 3.0 there is a sandbox in place that should prevent execution of evil code.
@@ -1142,7 +1142,7 @@ back_pressure_strategy:
 # is sufficient for many applications such that no load starvation is experienced even without coalescing.
 # There are other benefits to coalescing network messages that are harder to isolate with a simple metric like messages
 # per second. By coalescing multiple tasks together, a network thread can process multiple messages for the cost of one
-# trip to read from a socket, and all the task submission work can be done at the same time reducing context switching
+# trip to read from a socket, and all.m.txt the task submission work can be done at the same time reducing context switching
 # and increasing cache friendliness of network message processing.
 # See CASSANDRA-8692 for details.
 

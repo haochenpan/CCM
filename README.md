@@ -1,4 +1,6 @@
-### current project: cassandra benchmarking's best practice
+## current project: cassandra benchmarking
+ 
+### best practices (benchmarking cassandra's procedure using VMCM)
 ```
 On GCP: create server & client virtual instances
 On all remote instances: run appropriate instance init code
@@ -78,7 +80,7 @@ shoud have a similar codebase, i.e. in ~/VMCM:
 ### other things
 
 download from the controller to local:
-`scp -i ./setup/id -r panhi_bc_edu@35.231.79.157:VMCM/data ./data`
+`scp -i ./setup/id -r panhi_bc_edu@35.243.220.74:VMCM/data ./data`
 
 
 ### known issues
