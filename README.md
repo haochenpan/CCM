@@ -24,11 +24,11 @@ cd
 git clone https://github.com/haochenpan/VMCM.git
 chmod +x ~/VMCM/bash/*
 cd VMCM/bash
-. setup.sh ycsb
+#. setup.sh ycsb
 #. setup.sh 0d464cd25ffbb5734f96c3082f9cc35011de3667
 #. setup.sh abd
 #. setup.sh abdOpt
-#. setup.sh treasErasure
+. setup.sh treasErasure
 ```
 
 ### cassandra table schemas for reference
@@ -79,11 +79,25 @@ shoud have a similar codebase, i.e. in ~/VMCM:
         
 ### other things
 
-download from the controller to local:
-`scp -i ./setup/id -r panhi_bc_edu@35.243.220.74:VMCM/data ./data`
+SSH private key needs `chmod 400 id` before use.
+
+run `rm ~/.ssh/known_hosts` when server ip changes
+
+download from the controller to local: `scp -i ./setup/id -r panhi_bc_edu@35.196.187.194:VMCM/data ./data`
 
 
 ### known issues
-SSH private key needs `chmod 400 id` before use.
-In Ubuntu 14.04, sometimes nohup bg jobs (e.g. run_bench.sh) hang in ssh sessions.
+
+In Ubuntu 14.04, sometimes foreground jobs (e.g. run_bench.sh, btest.sh) hang in ssh sessions but not background jobs (i.e. use nohup ... &).
+
+
+### future works
+
+the use of gc console & use a command to populate an instance
+
+project wide ssh key
+
+
+
+
 

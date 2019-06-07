@@ -28,18 +28,18 @@ cqlsh_path="~/cassandra/bin/cqlsh"
 #ycsb_3=${all_cluster_ycsb[2]}
 
 # dsk
-#cqlsh_server_local=10.142.15.199
-#cqlsh_server=${dsk_cluster[0]}
-#ycsb_1=${dsk_cluster_ycsb[0]}
-#ycsb_2=${dsk_cluster_ycsb[1]}
-#ycsb_3=${dsk_cluster_ycsb[2]}
+cqlsh_server_local=10.142.15.199
+cqlsh_server=${dsk_cluster[0]}
+ycsb_1=${dsk_cluster_ycsb[0]}
+ycsb_2=${dsk_cluster_ycsb[1]}
+ycsb_3=${dsk_cluster_ycsb[2]}
 
 # quo
-cqlsh_server_local=10.142.15.223
-cqlsh_server=${quo_cluster[0]}
-ycsb_1=${quo_cluster_ycsb[0]}
-ycsb_2=${quo_cluster_ycsb[1]}
-ycsb_3=${quo_cluster_ycsb[2]}
+#cqlsh_server_local=10.142.15.223
+#cqlsh_server=${quo_cluster[0]}
+#ycsb_1=${quo_cluster_ycsb[0]}
+#ycsb_2=${quo_cluster_ycsb[1]}
+#ycsb_3=${quo_cluster_ycsb[2]}
 
 # nohup /bin/bash run_bench.sh &
 
