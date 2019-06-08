@@ -32,14 +32,14 @@ fontsize = 12
 def vary_szs_x_label(num_of_server, tx, rp):
     return ("value size (B)\n"
             f"(LAN, {num_of_server} Cassandra servers, "
-            f"3 1-thread YCSB generators,"
+            f"3 1-thread YCSB clients, "
             f"write ratio: {(10 - rp) / 10})")
 
 
 def vary_rps_x_label(num_of_server, tx, size):
     return ("write ratio\n"
             f"(LAN, {num_of_server} Cassandra servers, "
-            f"3 1-thread YCSB generators,"
+            f"3 1-thread YCSB clients, "
             f"{size} byte data)")
 
 
@@ -408,8 +408,10 @@ def plot_latency_vary_rp(exp_idxs, labels, tx, size, rps, num_of_server, tag, fi
 if __name__ == '__main__':
     pass
 
-    index_list_5 = [852, 862, 872, 892, 881, 903]
-    names_list_5 = ['ABD', 'ABD-Opt', 'Cass-All', 'Cass-Quorum', 'Treas-Opt-Disk1', 'Treas-Opt-Disk2']
+    # index_list_5 = [852, 862, 872, 892, 881, 903, 912]
+    index_list_5 = [852, 862, 872, 892, 881]
+    # names_list_5 = ['ABD', 'ABD-Opt', 'Cass-All', 'Cass-Quorum', 'Treas-Opt-1', 'Treas-Opt-2', 'Treas-Opt-3']
+    names_list_5 = ['ABD', 'ABD-Opt', 'Cass-All', 'Cass-Quorum', 'Treas-Opt']
     vary_size_list = [16, 64, 256, 1024, 2048, 4096]
     vary_rpx_list = [1, 5, 9]
     plot_throughput_vary_size(index_list_5, names_list_5, 1, vary_size_list, 9, 5, 1)

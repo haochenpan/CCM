@@ -9,7 +9,7 @@ echo $ycsb_1
 describe
 
 remove_all
-run_wl 1 9 32
+run_wl 1 9 32768
 download_all 500
 
 count
