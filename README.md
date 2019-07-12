@@ -1,6 +1,7 @@
-## Cassandra Cluster: Deployment hard-won wisdom & Benchmarking best practices
+## Cassandra Cluster Management: Deployment hard-won wisdom & Benchmarking best practices
 
-> In a nutshell, I clone this repo when creating a new VM for Cassandra benchmarking (using YCSB). This repo also documents hard-won wisdom and best practices I realized. 
+> I clone this repo when initializing a new VM for Cassandra benchmarking (using YCSB). <br>
+This repo is also a toolbox for managing these VMs and this readme file documents hard-won wisdom and best practices I realized. 
 
 
 ### Table of Contents
