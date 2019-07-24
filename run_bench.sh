@@ -6,12 +6,12 @@
 remove_all
 run_wl_vary_size 1 9
 #run_wl_vary_read 1 128
-download_all 941
+download_all 961
 
 remove_all
 run_wl_vary_size 1 9
 #run_wl_vary_read 1 128
-download_all 942
+download_all 962
 
 #remove_all
 #run_wl_vary_size 1 9

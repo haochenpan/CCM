@@ -25,12 +25,12 @@ function prep_ycsb() {
 
 for i in "${dsk_cluster[@]}"; do
     echo $i
-    misc $i
+#    misc $i
 #    change_seed $i
 #      prep_ycsb $i
 
 #     clear_cass $i
-#     start_cass $i
+     start_cass $i
     # stop_cass $i
 #     misc $i
     #
