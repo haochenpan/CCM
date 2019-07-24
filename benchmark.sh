@@ -65,7 +65,7 @@ function run_wl_vary_size() {
    # $1 == thread count, 1, 2, 3, 4, 5, ...
    # $2 == read portion: 1, 3, 5, 7, 9
 #   for i in 16 64 256 1024 2048 4096
-   for i in 2048 4096 8192 16384 32768
+   for i in 2048 4096 8192 16384 32768 65536
    do
      run_wl_5_times "$1" "$2" "$i"
    done

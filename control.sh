@@ -23,7 +23,7 @@ function prep_ycsb() {
    scp -o StrictHostKeyChecking=no -i $sk_path ./bash/ycsb.sh $username@$1:~/VMCM/bash
 }
 
-for i in "${all_cluster[@]}"; do
+for i in "${dsk_cluster[@]}"; do
     echo $i
     misc $i
 #    change_seed $i
