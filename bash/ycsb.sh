@@ -53,7 +53,7 @@ echo "if run: thread count $thread_count, read_portion $read_portion"
 
 case $run_switch in
   load)
-  ~/ycsb-0.15.0/bin/ycsb load cassandra-cql -P ~/VMCM/ycsb/workload_${read_portion} \
+  ~/ycsb-0.15.0/bin/ycsb load cassandra-cql -P ~/CCM/ycsb/workload_${read_portion} \
   -p cassandra.readconsistencylevel=$load_read_cl \
   -p cassandra.writeconsistencylevel=$load_write_cl \
   -p recordcount=$row_cnt -p operationcount=$ops_cnt \
@@ -62,13 +62,13 @@ case $run_switch in
   -threads 1
   ;;
   run)
-  ~/ycsb-0.15.0/bin/ycsb run cassandra-cql -P ~/VMCM/ycsb/workload_${read_portion} \
+  ~/ycsb-0.15.0/bin/ycsb run cassandra-cql -P ~/CCM/ycsb/workload_${read_portion} \
   -p cassandra.readconsistencylevel=$run_read_cl \
   -p cassandra.writeconsistencylevel=$run_write_cl \
   -p recordcount=$row_cnt -p operationcount=$ops_cnt \
   -p hosts=$hosts -p fieldcount=$field_count -p fieldlength=$field_length \
   -threads $thread_count \
-  -s >> ~/VMCM/data/data_cass_t${thread_count}_r${read_portion}_s${field_length}.txt
+  -s >> ~/CCM/data/data_cass_t${thread_count}_r${read_portion}_s${field_length}.txt
   ;;
   *)
   echo "invalid run_switch $run_switch"

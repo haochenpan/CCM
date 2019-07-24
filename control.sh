@@ -20,7 +20,7 @@ function misc() {
 }
 
 function prep_ycsb() {
-   scp -o StrictHostKeyChecking=no -i $sk_path ./bash/ycsb.sh $username@$1:~/VMCM/bash
+   scp -o StrictHostKeyChecking=no -i $sk_path ./bash/ycsb.sh $username@$1:~/CCM/bash
 }
 
 for i in "${dsk_cluster[@]}"; do

@@ -24,7 +24,7 @@ function run_trail_at_client() {
   # $4 == field length (in bytes), 10, 100, 500, 1000, 5000, 10000 (cannot go beyond)
   # $5 == load | run | loadall
   # $6 == YCSB client public ip
-  ssh -o StrictHostKeyChecking=no -i "$sk_path" "$username"@"$6" "~/VMCM/bash/ycsb.sh $1 $2 $3 $4 $5"
+  ssh -o StrictHostKeyChecking=no -i "$sk_path" "$username"@"$6" "~/CCM/bash/ycsb.sh $1 $2 $3 $4 $5"
 }
 
 function run_at_all_clients() {
@@ -72,12 +72,12 @@ function run_wl_vary_size() {
 }
 
 function download_data() {
-  ssh -n -o StrictHostKeyChecking=no -i $sk_path $username@$1 "cd ~/VMCM/data; zip data_${2}_${1}.zip data_cass_t*"
-  scp -i $sk_path -o StrictHostKeyChecking=no $username@$1:~/VMCM/data/data_${2}_${1}.zip  ./data/
+  ssh -n -o StrictHostKeyChecking=no -i $sk_path $username@$1 "cd ~/CCM/data; zip data_${2}_${1}.zip data_cass_t*"
+  scp -i $sk_path -o StrictHostKeyChecking=no $username@$1:~/CCM/data/data_${2}_${1}.zip  ./data/
 }
 
 function rm_data() {
-  ssh -n -o StrictHostKeyChecking=no -i $sk_path $username@$1 "cd ~/VMCM/data; rm data*"
+  ssh -n -o StrictHostKeyChecking=no -i $sk_path $username@$1 "cd ~/CCM/data; rm data*"
 }
 
 function download_all() {
