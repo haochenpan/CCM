@@ -2,7 +2,7 @@
 
 copy_key() {
     mkdir -p ~/.ssh/
-    cat ~/VMCM/setup/id.pub >> ~/.ssh/authorized_keys
+    cat ~/CCM/setup/id.pub >> ~/.ssh/authorized_keys
 }
 
 install_java() {
