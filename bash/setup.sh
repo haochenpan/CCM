@@ -2,7 +2,8 @@
 
 copy_key() {
     mkdir -p ~/.ssh/
-    cat ~/CCM/setup/id.pub >> ~/.ssh/authorized_keys
+#    cat ~/CCM/setup/id.pub >> ~/.ssh/authorized_keys
+    echo  "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC2UTPtT0vygLTgKHqfcLbrTJzhTOzy7b9MSp60xHWRasqsFzdyhciNLvX7+SNwDHzwo3QpZWZqS+RmKvxW/ZobArURmKczFsPlaLQlDtStyqz+pi3Sb6KKemp0KCCSnGn6FnCjxSksplusDxPiFHZxrSawAsfocJdIxHSSZYNfZE/lTizf8CTPkbuQgjd6wUfVTHu6OKH4KenJbsUefUSH20BqacixLcuk+ZZKczq09gcA2ApEDDmGyEBKEzhOscVrb98dEIA2VcS39MXURXkmnY9MadBAbbw6UUFNIEJniiScyP5yUf3HPVdeJdCipKLKKZ8s4+IH7zxElM86N+39 root" >> ~/.ssh/authorized_keys
 }
 
 install_java() {
@@ -36,16 +37,12 @@ install_cass() {
         abd | abdOpt)
             git clone https://github.com/ZezhiWang/cassandra.git
             ;;
-        0d4* | 8ed* | treasErasure | ErasureMemory)  # 0d464cd25ffbb5734f96c3082f9cc35011de3667
+        0d4* | treasErasure | ErasureMemory | charTreas | treasWithLog)  # 0d464cd25ffbb5734f96c3082f9cc35011de3667
             git clone https://github.com/yingjianwu199868/cassandra.git
             ;;
     esac
 
-    cd cassandra
-    git checkout $1
-    ant build
-    git status
-
+    cd cassandra && git checkout $1 && ant build && git status
     cd
 }
 

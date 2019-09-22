@@ -107,6 +107,19 @@ CREATE TABLE ycsb.usertable ( y_id varchar PRIMARY KEY, field0 varchar,
                               field3 varchar, tag3 varchar,
                               field4 varchar, tag4 varchar,
                               field5 varchar, tag5 varchar);
+
+oreas*
+CREATE TABLE ycsb.usertable( y_id varchar PRIMARY KEY, field0 varchar, 
+                              field1 varchar, tag1 bigint, 
+                              field2 varchar, tag2 bigint, 
+                              field3 varchar, tag3 bigint);
+
+treas2
+CREATE TABLE ycsb.usertable( y_id varchar PRIMARY KEY, field0 varchar, 
+                             field1 varchar, tag1 varchar, 
+                             field2 varchar, tag2 varchar, 
+                             field3 varchar, tag3 varchar);
+
                             
 generic 
 CREATE TABLE ycsb.usertable ( y_id varchar PRIMARY KEY, field0 varchar,
@@ -162,7 +175,7 @@ In `bash/ycsb.sh`, you can override some behavior of the workload by changing va
 ### More Best Practices
 
 - download from the controller to local: `scp -i ./setup/id -r panhi_bc_edu@server_ip:VMCM/data ./data`
-
+- now we do ssh-keygen -m PEM -f id -C root on MacOS to generate SSH keys
 ### Future Works
 
 - the use of google cloud console & use a command to populate an instance
