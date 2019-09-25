@@ -2,17 +2,17 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 
-fig_size = (7, 7)
-legend_prop = {'size': 9}
-legend_ncol = 3
-data_folder = "./data/data"
+fig_size = (6.5, 6.5)
+legend_prop = {'size': 13}
+legend_ncol = 2
+data_folder = "../data/"
 available_tags = ['average_read', '95_percentile_read', 'average_write', '95_percentile_write']
-markers = ["^","P", "*", "X", "D", "p"]
-colors = ['tab:purple', 'tab:orange', 'tab:brown', 'tab:red', 'tab:cyan', 'tab:pink', 'tab:gray', 'tab:blue']
-colors = ['tab:brown', 'tab:cyan', 'tab:pink', 'tab:gray', 'tab:blue']
+markers = ["^","P",  "D", "s"]
+colors = ['tab:orange', 'tab:red', 'tab:cyan', 'tab:blue']
+# colors = ['tab:brown', 'tab:cyan', 'tab:pink', 'tab:gray', 'tab:blue']
 # colors = ['tab:orange', 'tab:red', 'tab:cyan', 'tab:gray', 'tab:blue', 'tab:green']
 linestyle = '-'
-linewidth = 1.1
+linewidth = 2
 markersize = 8
 fontsize = 12
 
@@ -50,7 +50,6 @@ def get_all_exp_folders(exp_idx):
         for dir in dirs:
             if dir.startswith(f'data_{exp_idx}_'):
                 dir_list.append(os.path.join(root, dir))
-    # print(dir_list)
     assert len(dir_list) == 3, "3 clients"
     return dir_list
 
@@ -367,9 +366,9 @@ def plot_latency_vary_size(exp_idxs, labels, tx, sizes, rp, num_of_server, tag, 
     plt.xscale('log')
     plt.xticks(sizes, tuple(sizes))
     plt.minorticks_off()
-    # plt.yticks(np.arange(0, 2500, step=500))
+    plt.yticks(np.arange(0, 3000, step=500))
     # plt.yticks(np.arange(0, 4500, step=500))
-    plt.yticks(np.arange(0, 6500, step=500))
+    # plt.yticks(np.arange(0, 6500, step=500))
     tag = ' '.join(tag.split("_"))
     axs.set_ylabel(f"{tag} latency (µs)", fontsize=fontsize)
 
@@ -395,7 +394,7 @@ def plot_latency_vary_rp(exp_idxs, labels, tx, size, rps, num_of_server, tag, fi
     axs.legend(loc='upper left', ncol=legend_ncol, prop=legend_prop)  ##
     axs.set_xlabel(vary_rps_x_label(num_of_server, tx, size), fontsize=fontsize)
     axs.set_xticks(wps)
-    plt.yticks(np.arange(0, 2500, step=500))
+    plt.yticks(np.arange(0, 3000, step=500))
     # plt.yticks(np.arange(0, 4500, step=500))
 
     tag = ' '.join(tag.split("_"))
@@ -410,72 +409,73 @@ def plot_latency_vary_rp(exp_idxs, labels, tx, size, rps, num_of_server, tag, fi
 if __name__ == '__main__':
     pass
 
-    # index_list_5 = [852, 862, 872, 892, 881]
-    index_list_5 = [941, 951]
-    # names_list_5 = ['ABD', 'ABD-Opt', 'Cass-All', 'Cass-Quorum', 'Treas-Opt']
-    names_list_5 = ['Cass-All', 'Treas-Opt']
-    vary_size_list = [2048, 4096]
-    # vary_rpx_list = [1, 5, 9]
-    # plot_throughput_vary_size(index_list_5, names_list_5, 1, vary_size_list, 9, 5, 11)
-    # plot_latency_vary_size(index_list_5, names_list_5, 1, vary_size_list, 9, 5, "average_read", 12)
-    # plot_latency_vary_size(index_list_5, names_list_5, 1, vary_size_list, 9, 5, "95_percentile_read", 13)
-    # plot_latency_vary_size(index_list_5, names_list_5, 1, vary_size_list, 9, 5, "average_write", 14)
-    # plot_latency_vary_size(index_list_5, names_list_5, 1, vary_size_list, 9, 5, "95_percentile_write", 15)
+    index_list_5 = [872, 892, 881, 981]
+    # index_list_5 = [941, 951]
+    names_list_5 = ['Cass-All', 'Cass-Quorum', 'Treas', 'Oreas']
+    # names_list_5 = ['Cass-All', 'Treas-Opt']
+    # vary_size_list = [2048, 4096]
+    vary_size_list = [16, 64, 256, 1024, 2048, 4096]
+    vary_rpx_list = [1, 5, 9]
+    plot_throughput_vary_size(index_list_5, names_list_5, 1, vary_size_list, 9, 5, 11)
+    plot_latency_vary_size(index_list_5, names_list_5, 1, vary_size_list, 9, 5, "average_read", 12)
+    plot_latency_vary_size(index_list_5, names_list_5, 1, vary_size_list, 9, 5, "95_percentile_read", 13)
+    plot_latency_vary_size(index_list_5, names_list_5, 1, vary_size_list, 9, 5, "average_write", 14)
+    plot_latency_vary_size(index_list_5, names_list_5, 1, vary_size_list, 9, 5, "95_percentile_write", 15)
     #
-    # plot_throughput_vary_rp(index_list_5, names_list_5, 1, 128, vary_rpx_list, 5, 6)
-    # plot_latency_vary_rp(index_list_5, names_list_5, 1, 128, vary_rpx_list, 5, "average_read", 7)
-    # plot_latency_vary_rp(index_list_5, names_list_5, 1, 128, vary_rpx_list, 5, "95_percentile_read", 8)
-    # plot_latency_vary_rp(index_list_5, names_list_5, 1, 128, vary_rpx_list, 5, "average_write", 9)
-    # plot_latency_vary_rp(index_list_5, names_list_5, 1, 128, vary_rpx_list, 5, "95_percentile_write", 10)
+    plot_throughput_vary_rp(index_list_5, names_list_5, 1, 128, vary_rpx_list, 5, 6)
+    plot_latency_vary_rp(index_list_5, names_list_5, 1, 128, vary_rpx_list, 5, "average_read", 7)
+    plot_latency_vary_rp(index_list_5, names_list_5, 1, 128, vary_rpx_list, 5, "95_percentile_read", 8)
+    plot_latency_vary_rp(index_list_5, names_list_5, 1, 128, vary_rpx_list, 5, "average_write", 9)
+    plot_latency_vary_rp(index_list_5, names_list_5, 1, 128, vary_rpx_list, 5, "95_percentile_write", 10)
 
-    def getTag():
-        print("2KB ", end='')
-        yield
-        print("4KB ", end='')
-        yield
+    # def getTag():
+    #     print("2KB ", end='')
+    #     yield
+    #     print("4KB ", end='')
+    #     yield
 
-    list_4 = [872, 941, 881, 951]
-    name_4 = ["Cass-All-1", "Cass-All-2", 'Treas-Opt-1', 'Treas-Opt-3']
-    print(name_4)
-
-    print("throughput")
-    t = getTag()
-    alo_lists = [get_throughput_vary_size(idx, 1, vary_size_list, 9) for idx in list_4]
-    alo_lists = [*zip(*alo_lists)]
-    for alo in alo_lists:
-        next(t)
-        print(alo)
-
-    print("average_read")
-    t = getTag()
-    alo_lists = [get_latency_vary_size(idx, 1, vary_size_list, 9, "average_read") for idx in list_4]
-    alo_lists = [*zip(*alo_lists)]
-    for alo in alo_lists:
-        next(t)
-        print(alo)
-
-    print("95_percentile_read")
-    t = getTag()
-    alo_lists = [get_latency_vary_size(idx, 1, vary_size_list, 9, "95_percentile_read") for idx in list_4]
-    alo_lists = [*zip(*alo_lists)]
-    for alo in alo_lists:
-        next(t)
-        print(alo)
-
-    print("average_write")
-    t = getTag()
-    alo_lists = [get_latency_vary_size(idx, 1, vary_size_list, 9, "average_write") for idx in list_4]
-    alo_lists = [*zip(*alo_lists)]
-    for alo in alo_lists:
-        next(t)
-        print(alo)
-
-    print("95_percentile_write")
-    t = getTag()
-    alo_lists = [get_latency_vary_size(idx, 1, vary_size_list, 9, "95_percentile_write") for idx in list_4]
-    alo_lists = [*zip(*alo_lists)]
-    for alo in alo_lists:
-        next(t)
-        print(alo)
+    # list_4 = [872, 941, 881, 951]
+    # name_4 = ["Cass-All-1", "Cass-All-2", 'Treas-Opt-1', 'Treas-Opt-3']
+    # print(name_4)
+    #
+    # print("throughput")
+    # t = getTag()
+    # alo_lists = [get_throughput_vary_size(idx, 1, vary_size_list, 9) for idx in list_4]
+    # alo_lists = [*zip(*alo_lists)]
+    # for alo in alo_lists:
+    #     next(t)
+    #     print(alo)
+    #
+    # print("average_read")
+    # t = getTag()
+    # alo_lists = [get_latency_vary_size(idx, 1, vary_size_list, 9, "average_read") for idx in list_4]
+    # alo_lists = [*zip(*alo_lists)]
+    # for alo in alo_lists:
+    #     next(t)
+    #     print(alo)
+    #
+    # print("95_percentile_read")
+    # t = getTag()
+    # alo_lists = [get_latency_vary_size(idx, 1, vary_size_list, 9, "95_percentile_read") for idx in list_4]
+    # alo_lists = [*zip(*alo_lists)]
+    # for alo in alo_lists:
+    #     next(t)
+    #     print(alo)
+    #
+    # print("average_write")
+    # t = getTag()
+    # alo_lists = [get_latency_vary_size(idx, 1, vary_size_list, 9, "average_write") for idx in list_4]
+    # alo_lists = [*zip(*alo_lists)]
+    # for alo in alo_lists:
+    #     next(t)
+    #     print(alo)
+    #
+    # print("95_percentile_write")
+    # t = getTag()
+    # alo_lists = [get_latency_vary_size(idx, 1, vary_size_list, 9, "95_percentile_write") for idx in list_4]
+    # alo_lists = [*zip(*alo_lists)]
+    # for alo in alo_lists:
+    #     next(t)
+    #     print(alo)
 
 

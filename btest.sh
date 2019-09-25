@@ -3,15 +3,15 @@
 . credentials.sh
 . benchmark.sh
 
-echo $cqlsh_server
-echo $cqlsh_server_local
-echo $ycsb_1
-describe
+mkdir -p $dir/load
+mkdir -p $dir/run
 
-remove_all
-run_wl 1 9 32768
-download_all 500
+#describe
+#remove_all
+single_load_wl 1 9 16
+#single_run_wl 1 9 16
+#download_all 500
 
-count
-truncate
-count
+#count
+#truncate
+#count

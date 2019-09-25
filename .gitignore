@@ -2,3 +2,5 @@
 servers.sh
 .DS*
 *.png
+data/*
+data2/*

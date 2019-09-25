@@ -6,7 +6,7 @@
 # $4 == field length (in bytes), 10, 100, 500, 1000, 5000, 10000 (cannot go beyond)
 # $5 == load | run | loadall
 
-#hosts=10.142.0.2,10.142.0.3,10.142.0.4,10.142.0.5,10.142.0.6 #oreas
+#hosts=10.142.0.2,10.142.0.3,10.142.0.4,10.142.0.5,10.142.0.6 #treas
 hosts=10.142.0.17,10.142.0.18,10.142.0.19,10.142.0.20,10.142.0.21 #oreas
 
 
@@ -14,7 +14,7 @@ hosts=10.142.0.17,10.142.0.18,10.142.0.19,10.142.0.20,10.142.0.21 #oreas
 #load_write_cl=QUORUM
 #run_read_cl=QUORUM
 #run_write_cl=QUORUM
-#
+
 load_read_cl=ALL
 load_write_cl=ALL
 run_read_cl=ALL
@@ -47,6 +47,8 @@ echo "total rows $row_cnt, per client ops $ops_cnt"
 echo "if load: insert start $insert_start, insert count $insert_count"
 echo "if load: field length (in bytes) $field_length"
 echo "if run: thread count $thread_count, read_portion $read_portion"
+
+mkdir -p ~/CCM/data/
 
 case $run_switch in
   load)

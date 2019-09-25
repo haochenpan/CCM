@@ -43,6 +43,23 @@ function run_wl() {
     run_at_all_clients "$1" "$2" "$3" run
 }
 
+function single_load_wl() {
+  # $1 == thread count, 1, 2, 3, 4, 5, ...
+  # $2 == read portion: 1, 3, 5, 7, 9
+  # $3 == field length (in bytes), 10, 100, 500, 1000, 5000, 10000 (cannot go beyond)
+    truncate
+    run_at_all_clients "$1" "$2" "$3" load
+    count
+}
+
+function single_run_wl() {
+  # $1 == thread count, 1, 2, 3, 4, 5, ...
+  # $2 == read portion: 1, 3, 5, 7, 9
+  # $3 == field length (in bytes), 10, 100, 500, 1000, 5000, 10000 (cannot go beyond)
+    run_at_all_clients "$1" "$2" "$3" run
+
+}
+
 function run_wl_5_times() {
     echo "run wl with thd $1, read $2, size $3"
     run_wl $1 $2 $3
@@ -64,8 +81,8 @@ function run_wl_vary_read() {
 function run_wl_vary_size() {
    # $1 == thread count, 1, 2, 3, 4, 5, ...
    # $2 == read portion: 1, 3, 5, 7, 9
-#   for i in 16 64 256 1024 2048 4096
-   for i in 2048 4096 8192 16384 32768 65536
+   for i in 16 64 256 1024 2048 4096
+#   for i in 2048 4096 8192 16384 32768 65536
    do
      run_wl_5_times "$1" "$2" "$i"
    done
