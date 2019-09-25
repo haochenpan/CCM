@@ -16,8 +16,12 @@ install_basics() {
     install_java
     sudo apt-get update && sudo apt-get upgrade -y
     sudo apt-get install -y build-essential linux-headers-$(uname -r)
-    sudo apt-get install -y make git zip ant
+    sudo apt-get install -y make git zip ant python-pip
     sudo apt-get install -y vnstat
+    cd && git clone https://github.com/haochenpan/Syrupy.git && cd Syrupy && sudo python setup.py install
+
+    cd
+
 }
 
 install_ycsb() {

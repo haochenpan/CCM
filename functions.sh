@@ -11,7 +11,7 @@ function load_cass() {
 }
 
 function start_cass() {
-	ssh -f -o StrictHostKeyChecking=no -i $sk_path $username@$1 "~/cassandra/bin/cassandra"
+	ssh -f -o StrictHostKeyChecking=no -i $sk_path $username@$1 "~/cassandra/bin/cassandra -R"
 }
 
 function stop_cass() {

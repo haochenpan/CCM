@@ -7,8 +7,8 @@ ycsb_path="~/ycsb-0.15.0"
 cqlsh_path="~/cassandra/bin/cqlsh"
 
 # cass-all
-cqlsh_server_local=10.142.0.11
-cqlsh_server=${cass_all[0]}
+cqlsh_server_local=10.142.0.17
+cqlsh_server=${treas_g2[0]}
 ycsb_1=${ycsb_one[0]}
 ycsb_2=${ycsb_one[1]}
 ycsb_3=${ycsb_one[2]}
