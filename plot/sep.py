@@ -52,7 +52,6 @@ def get_combined_throughput(files):
 def get_throughput_vary_size(exp_idx, tx, sizes, rp):
     dir_list = get_all_exp_folders(exp_idx)
     plot_list = []
-
     for size in sizes:
         files = list(map(lambda dir_name: os.path.join(dir_name, f'data_cass_t{tx}_r{rp}_s{size}.txt'), dir_list))
         assert len(files) == 3, "3 clients"
@@ -187,18 +186,20 @@ def get_latency_vary_rp(exp_idx, tx, size, rps, tag):
 if __name__ == '__main__':
     pass
 
-    index_list_5 = [1001, 1011, 991, 1021]
-    names_list_5 = ['Cass-All', 'Cass-Quorum', 'Treas', 'Oreas']
-    vary_size_list = [16, 4096]
+    index_list_5 = [1161, 1171, 1181, 1191]
+    # index_list_5 = [1071, 1121, 1111, 1021]
+    names_list_5 = ['Treas-f=0', 'Treas-f=1', "Oreas-f=0", "Oreas-f=1"]
+    # names_list_5 = ['Cass-All', 'Cass-Quorum', 'Treas', "Oreas"]
+    vary_size_list = [16]
+    # vary_size_list = [16, 4096]
     for i, exp_idx in enumerate(index_list_5):
         for size in vary_size_list:
             # results = [names_list_5[i], "data size", size, "throughput"]
-            results = []
+            results = [names_list_5[i]]
             tho = get_throughput_vary_size(exp_idx, 1, [size], 9)
             results.extend(tho)
-            print(available_tags)
-            for tag in available_tags:
+            # for tag in available_tags:
                 # results.append(tag)
-                lat = get_latency_vary_size(exp_idx, 1, [size], 9, tag)
-                results.extend(lat)
+                # lat = get_latency_vary_size(exp_idx, 1, [size], 9, tag)
+                # results.extend(lat)
             print(*results, sep="\t")

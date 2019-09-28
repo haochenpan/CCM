@@ -182,8 +182,24 @@ In `bash/ycsb.sh`, you can override some behavior of the workload by changing va
 - project wide ssh key
 - `control.sh ` -> python + bash 
 
+ssh -o StrictHostKeyChecking=no -i ~/Desktop/Cassandra-Cluster-Management/setup/id root@35.243.201.187
+ssh -o StrictHostKeyChecking=no -i ~/Desktop/Cassandra-Cluster-Management/setup/id root@35.227.79.163
+ssh -o StrictHostKeyChecking=no -i ~/Desktop/Cassandra-Cluster-Management/setup/id root@34.74.202.53
+ssh -o StrictHostKeyChecking=no -i ~/Desktop/Cassandra-Cluster-Management/setup/id root@34.73.73.11
+ssh -o StrictHostKeyChecking=no -i ~/Desktop/Cassandra-Cluster-Management/setup/id root@35.231.102.168
+
+ssh -o StrictHostKeyChecking=no -i ~/Desktop/Cassandra-Cluster-Management/setup/id root@35.237.204.12
+ssh -o StrictHostKeyChecking=no -i ~/Desktop/Cassandra-Cluster-Management/setup/id root@34.73.232.181
+ssh -o StrictHostKeyChecking=no -i ~/Desktop/Cassandra-Cluster-Management/setup/id root@34.74.145.108
+
+~/Syrupy/scripts/syrupy.py --interval=5 --poll-command='.*java' &
+vnstat -l
 
 
-
+./cqlsh 10.142.0.2 -e "CREATE KEYSPACE ycsb WITH REPLICATION = {'class' : 'SimpleStrategy', 'replication_factor': 7};"
+./cqlsh 10.142.0.17 -e "CREATE KEYSPACE ycsb WITH REPLICATION = {'class' : 'SimpleStrategy', 'replication_factor': 7};"
+./cqlsh 10.142.0.17 -e "CREATE TABLE ycsb.usertable( y_id varchar PRIMARY KEY, field0 varchar, field1 varchar, tag1 bigint, field2 varchar, tag2 bigint, field3 varchar, tag3 bigint);"
+./cqlsh 10.142.0.2 -e "CREATE TABLE ycsb.usertable( y_id varchar PRIMARY KEY, field0 varchar, field1 varchar, tag1 varchar, field2 varchar, tag2 varchar, field3 varchar, tag3 varchar);"
+./cqlsh 10.142.0.31 -e "CREATE TABLE ycsb.usertable ( y_id varchar primary key, field0 varchar);"
 
 

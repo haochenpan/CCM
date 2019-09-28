@@ -72,12 +72,12 @@ def get_band_info(file):
 
 
 if __name__ == '__main__':
-    folder_names = ["cassall16", "cassall4096", "cassquorum16", "cassquorum4096",
-                    "treas16", "treas4096", "oreas16", "oreas4096"]
+    folder_names = ["cassall216", "cassall24096", "cassquo316", "cassquo34096",
+                    "treas216", "treas24096", "oreas216", "oreas24096"]
     for folder in folder_names:
         report_raw = defaultdict(lambda: [])
         report = {}
-        report["name"] = folder + "-per-server"
+        # report["name"] = folder + "-per-server"
 
         band, mem = get_files(folder)
         for ban in band:
@@ -86,10 +86,9 @@ if __name__ == '__main__':
                 report_raw[k].append(v)
         for me in mem:
             c, m = get_cpu_mem_info(me)
-            report_raw["cpu_percent"].append(c)
             report_raw["mem_percent"].append(m)
         for k, v in report_raw.items():
             assert len(v) == 5, "5 servers"
             report[k] = round(sum(v) / len(v), 2)
-        # print(*list(report.values()), sep='\t')
-        print(*list(report.keys()), sep='\t')
+        print(*list(report.values()), sep='\t')
+        # print(*list(report.keys()), sep='\t')

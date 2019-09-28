@@ -7,7 +7,7 @@ legend_prop = {'size': 13}
 legend_ncol = 2
 data_folder = "../data/"
 available_tags = ['average_read', '95_percentile_read', 'average_write', '95_percentile_write']
-markers = ["^","P",  "D", "s"]
+markers = ["^", "P", "D", "s"]
 colors = ['tab:orange', 'tab:red', 'tab:cyan', 'tab:blue']
 # colors = ['tab:brown', 'tab:cyan', 'tab:pink', 'tab:gray', 'tab:blue']
 # colors = ['tab:orange', 'tab:red', 'tab:cyan', 'tab:gray', 'tab:blue', 'tab:green']
@@ -409,24 +409,26 @@ def plot_latency_vary_rp(exp_idxs, labels, tx, size, rps, num_of_server, tag, fi
 if __name__ == '__main__':
     pass
 
-    index_list_5 = [872, 892, 881, 981]
-    # index_list_5 = [941, 951]
-    names_list_5 = ['Cass-All', 'Cass-Quorum', 'Treas', 'Oreas']
+    # index_list_5 = [872, 892, 881, 981]
+    # index_list_5 = [1031, 1131, 1051, 981]
+    index_list_5 = [941, 1151, 951, 1141]
+    # names_list_5 = ['Cass-All', 'Cass-Quorum', 'Treas', 'Oreas']
     # names_list_5 = ['Cass-All', 'Treas-Opt']
+    names_list_5 = ['Cass-All', 'Cass-Quorum', 'Treas', 'Oreas']
     # vary_size_list = [2048, 4096]
-    vary_size_list = [16, 64, 256, 1024, 2048, 4096]
-    vary_rpx_list = [1, 5, 9]
-    plot_throughput_vary_size(index_list_5, names_list_5, 1, vary_size_list, 9, 5, 11)
-    plot_latency_vary_size(index_list_5, names_list_5, 1, vary_size_list, 9, 5, "average_read", 12)
-    plot_latency_vary_size(index_list_5, names_list_5, 1, vary_size_list, 9, 5, "95_percentile_read", 13)
-    plot_latency_vary_size(index_list_5, names_list_5, 1, vary_size_list, 9, 5, "average_write", 14)
-    plot_latency_vary_size(index_list_5, names_list_5, 1, vary_size_list, 9, 5, "95_percentile_write", 15)
+    vary_size_list = [2048, 4096, 8192, 16384, 32768]
+    # vary_rpx_list = [1, 5, 9]
+    plot_throughput_vary_size(index_list_5, names_list_5, 1, vary_size_list, 9, 5, 16)
+    # plot_latency_vary_size(index_list_5, names_list_5, 1, vary_size_list, 9, 5, "average_read", 12)
+    # plot_latency_vary_size(index_list_5, names_list_5, 1, vary_size_list, 9, 5, "95_percentile_read", 13)
+    # plot_latency_vary_size(index_list_5, names_list_5, 1, vary_size_list, 9, 5, "average_write", 14)
+    # plot_latency_vary_size(index_list_5, names_list_5, 1, vary_size_list, 9, 5, "95_percentile_write", 15)
     #
-    plot_throughput_vary_rp(index_list_5, names_list_5, 1, 128, vary_rpx_list, 5, 6)
-    plot_latency_vary_rp(index_list_5, names_list_5, 1, 128, vary_rpx_list, 5, "average_read", 7)
-    plot_latency_vary_rp(index_list_5, names_list_5, 1, 128, vary_rpx_list, 5, "95_percentile_read", 8)
-    plot_latency_vary_rp(index_list_5, names_list_5, 1, 128, vary_rpx_list, 5, "average_write", 9)
-    plot_latency_vary_rp(index_list_5, names_list_5, 1, 128, vary_rpx_list, 5, "95_percentile_write", 10)
+    # plot_throughput_vary_rp(index_list_5, names_list_5, 1, 128, vary_rpx_list, 5, 6)
+    # plot_latency_vary_rp(index_list_5, names_list_5, 1, 128, vary_rpx_list, 5, "average_read", 7)
+    # plot_latency_vary_rp(index_list_5, names_list_5, 1, 128, vary_rpx_list, 5, "95_percentile_read", 8)
+    # plot_latency_vary_rp(index_list_5, names_list_5, 1, 128, vary_rpx_list, 5, "average_write", 9)
+    # plot_latency_vary_rp(index_list_5, names_list_5, 1, 128, vary_rpx_list, 5, "95_percentile_write", 10)
 
     # def getTag():
     #     print("2KB ", end='')
@@ -477,5 +479,3 @@ if __name__ == '__main__':
     # for alo in alo_lists:
     #     next(t)
     #     print(alo)
-
-

@@ -41,7 +41,7 @@ install_cass() {
         abd | abdOpt)
             git clone https://github.com/ZezhiWang/cassandra.git
             ;;
-        0d4* | treasErasure | ErasureMemory | charTreas | treasWithLog)  # 0d464cd25ffbb5734f96c3082f9cc35011de3667
+        0d4* | treasErasure | ErasureMemory | charTreas | treasWithLog | OreasNoLog | treasWithLog)  # 0d464cd25ffbb5734f96c3082f9cc35011de3667
             git clone https://github.com/yingjianwu199868/cassandra.git
             ;;
     esac
