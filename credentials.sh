@@ -21,11 +21,11 @@ cqlsh_path="~/cassandra/bin/cqlsh"
 #ycsb_3=${cassallycsb[2]}
 #dir=./data2/cassquo34096
 
-cqlsh_server_local=10.142.0.17
-cqlsh_server=${oreas[0]}
-ycsb_1=${oreasycsb[0]}
-ycsb_2=${oreasycsb[1]}
-ycsb_3=${oreasycsb[2]}
+cqlsh_server_local=10.142.0.111
+cqlsh_server=${may_cluster[0]}
+ycsb_1=${may_cluster_ycsb[0]}
+ycsb_2=${may_cluster_ycsb[1]}
+ycsb_3=${may_cluster_ycsb[2]}
 #dir=./data2/oreas24096
 #
 #cqlsh_server_local=10.142.0.2
