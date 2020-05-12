@@ -18,7 +18,7 @@ install_basics() {
     sudo apt-get install -y build-essential linux-headers-$(uname -r)
     sudo apt-get install -y make git zip ant python-pip
     sudo apt-get install -y vnstat
-    cd && git clone https://github.com/haochenpan/Syrupy.git && cd Syrupy && sudo python setup.py install
+#    cd && git clone https://github.com/haochenpan/Syrupy.git && cd Syrupy && sudo python setup.py install
 
     cd
 
