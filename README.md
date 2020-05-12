@@ -34,7 +34,8 @@ apt-get install -y git
 cd && git clone https://github.com/haochenpan/CCM.git
 . ~/CCM/bash/setup.sh ycsb
 
-
+rm ~/CCM -rf
+cd
 sudo su
 apt-get install -y git
 cd && git clone https://github.com/haochenpan/CCM.git
