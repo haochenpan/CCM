@@ -55,7 +55,8 @@ install() {
 
 }
 
-#copy_key
-#install_java
-#install_basics
+copy_key
+install_java
+install_basics
 install "$1"
+chmod +x $ccm2_path/bash/*
