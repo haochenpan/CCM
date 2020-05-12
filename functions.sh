@@ -6,7 +6,6 @@ function change_seed() {
 }
 
 function load_cass() {
-
   ssh -o StrictHostKeyChecking=no -i $sk_path $username@$1 'bash -s' < ./bash/load.sh
 }
 

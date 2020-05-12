@@ -6,21 +6,17 @@
 # $4 == field length (in bytes), 10, 100, 500, 1000, 5000, 10000 (cannot go beyond)
 # $5 == load | run | loadall
 
-#hosts=10.142.0.2,10.142.0.3,10.142.0.4,10.142.0.5,10.142.0.6,10.142.0.77,10.142.0.78 #treas
-hosts=10.142.0.17,10.142.0.18,10.142.0.19,10.142.0.20,10.142.0.21,10.142.0.79,10.142.0.80 #oreas
-#hosts=10.142.0.31,10.142.0.32,10.142.0.33,10.142.0.34,10.142.0.35 #cassall
-#hosts=10.142.0.69,10.142.0.71,10.142.0.72,10.142.0.70,10.142.0.73 #cassquo
+hosts=10.142.0.11,10.142.0.12,10.142.0.13,10.142.0.15,10.142.0.16 #bsr
 
+load_read_cl=QUORUM
+load_write_cl=QUORUM
+run_read_cl=QUORUM
+run_write_cl=QUORUM
 
-#load_read_cl=QUORUM
-#load_write_cl=QUORUM
-#run_read_cl=QUORUM
-#run_write_cl=QUORUM
-
-load_read_cl=ALL
-load_write_cl=ALL
-run_read_cl=ALL
-run_write_cl=ALL
+#load_read_cl=ALL
+#load_write_cl=ALL
+#run_read_cl=ALL
+#run_write_cl=ALL
 
 num_of_clients=3
 row_cnt=30000  # in total

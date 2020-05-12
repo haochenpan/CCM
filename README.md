@@ -28,28 +28,18 @@ See [Change the Workload](#Change-the-Workload) when you want to modify existing
 These two sections serve as a great tour in this codebase. <br>
 
 ```bash
-sudo apt-get install -y git  # install git
-cd  # or anywhere you want to install
-git clone https://github.com/haochenpan/CCM.git  # git clone this repo
-chmod +x ~/CCM/bash/*  # for using this scripts through SSH tunnels
-cd CCM/bash
-. setup.sh ycsb
 
-#. setup.sh 0d464cd25ffbb5734f96c3082f9cc35011de3667
-
-#. setup.sh 8ed1a3066d538c0313e481482726e064b7b571c8
-
-# choose a algorithm (through a git branch tag) or YCSB to install
-#. setup.sh abd
-#. setup.sh abdOpt
-#. setup.sh treasErasure
+sudo su
+apt-get install -y git
+cd && git clone https://github.com/haochenpan/CCM.git
+. ~/CCM/bash/setup.sh ycsb
 
 
 sudo su
 apt-get install -y git
 cd && git clone https://github.com/haochenpan/CCM.git
-. ~/CCM/bash/setup.sh 0d464cd25ffbb5734f96c3082f9cc35011de3667
-. ~/CCM/bash/setup.sh ycsb
+. ~/CCM/bash/setup.sh bsr
+
 
 ```
 
