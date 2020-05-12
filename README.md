@@ -43,6 +43,14 @@ cd CCM/bash
 #. setup.sh abd
 #. setup.sh abdOpt
 #. setup.sh treasErasure
+
+
+sudo su
+apt-get install -y git
+cd && git clone https://github.com/haochenpan/CCM.git
+. ~/CCM/bash/setup.sh 0d464cd25ffbb5734f96c3082f9cc35011de3667
+. ~/CCM/bash/setup.sh ycsb
+
 ```
 
 
