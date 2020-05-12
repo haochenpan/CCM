@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ccm2_path=~/Cassandra-Cluster-Management/ccm2
+ccm2_path=~/CCM/ccm2
 
 copy_key() {
   mkdir -p ~/.ssh/
