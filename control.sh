@@ -15,7 +15,7 @@ function misc() {
   #  ssh -n -f -o StrictHostKeyChecking=no -i $sk_path $username@$1 \
   #    "vnstat -m"
   #
-  #  ssh -n -f -o StrictHostKeyChecking=no -i $sk_path $username@$1 "cd cassandra && git status"
+#    ssh -n -f -o StrictHostKeyChecking=no -i $sk_path $username@$1 "cd cassandra && git status"
   #  ssh -n -f -o StrictHostKeyChecking=no -i $sk_path $username@$1 "cd cassandra && git reset --hard && git status"
   #  ssh -n -f -o StrictHostKeyChecking=no -i $sk_path $username@$1 "cd cassandra && git checkout bsr"
   #  ssh -n -f -o StrictHostKeyChecking=no -i $sk_path $username@$1 "cd cassandra && git checkout cassandra-3.11"
@@ -25,8 +25,8 @@ function misc() {
   #  ssh -n -f -o StrictHostKeyChecking=no -i $sk_path $username@$1 "rm cassandra -rf"
   #  ssh -n -f -o StrictHostKeyChecking=no -i $sk_path $username@$1 "cd cassandra && ant build"
   #  ssh -n -f -o StrictHostKeyChecking=no -i $sk_path $username@$1 "cd cassandra && ant clean && ant build"
-  #    ssh -n -f -o StrictHostKeyChecking=no -i $sk_path $username@$1 "ps -fe | grep java"
-  ssh -n -f -o StrictHostKeyChecking=no -i $sk_path $username@$1 "fuser -k 7199/tcp"
+      ssh -n -f -o StrictHostKeyChecking=no -i $sk_path $username@$1 "ps -fe | grep java"
+#  ssh -n -f -o StrictHostKeyChecking=no -i $sk_path $username@$1 "fuser -k 7199/tcp"
   #  scp -i $sk_path-r $username:"/home/panhi_bc_edu/cassandra/logs/logs_$1.zip" ./data
   #  scp -i $sk_path ./setup/cassandra.yaml root@$1:~/CCM/setup/
 
@@ -38,10 +38,15 @@ function prep_ycsb() {
 
 for i in "${bsr_servers[@]}"; do
   #  echo $i
-  #  misc $i
-  #  change_seed $i
+#    misc $i
+#    change_seed $i
   #  prep_ycsb $i
-  #  clear_cass $i
+#    clear_cass $i
   start_cass $i
-  #  stop_cass $i # it takes some time to drain, so just use fuser above
+#    stop_cass $i # it takes some time to drain, so just use fuser above
 done
+
+
+./bin/nodetool status # to check nodes join, they should have status UN, if not all nodes are showing/ showing different status, wait a while
+./bin/cqlsh 10.142.0.11 -e "create keyspace ycsb WITH REPLICATION = {'class' : 'SimpleStrategy', 'replication_factor': 5};" # 10.142.0.11 should be an ip you see in the output of the last command
+./bin/cqlsh 10.142.0.11 -e "CREATE TABLE ycsb.usertable(y_id varchar PRIMARY KEY, field0 varchar, tag varchar);"

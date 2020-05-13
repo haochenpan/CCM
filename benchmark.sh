@@ -90,6 +90,16 @@ function run_wl_vary_size() {
    done
 }
 
+function run_wl_vary_thread() {
+  # $1 == read portion: 1, 3, 5, 7, 9
+  # $2 == field length (in bytes), 10, 100, 500, 1000, 5000, 10000 (cannot go beyond)
+  for thread in 2 4 6 8 10 12
+#  for thread in 2
+  do
+     run_wl_5_times "$thread" "$1" "$2"
+  done
+}
+
 function download_data() {
   ssh -n -o StrictHostKeyChecking=no -i $sk_path $username@$1 "cd ~/CCM/data; zip data_${2}_${1}.zip data_cass_t*"
   scp -i $sk_path -o StrictHostKeyChecking=no $username@$1:~/CCM/data/data_${2}_${1}.zip  ./data/
