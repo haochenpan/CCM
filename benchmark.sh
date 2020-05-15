@@ -81,7 +81,8 @@ function run_wl_vary_read() {
 function run_wl_vary_size() {
    # $1 == thread count, 1, 2, 3, 4, 5, ...
    # $2 == read portion: 1, 3, 5, 7, 9
-   for i in 16 64 256 1024 2048 4096
+   for i in 1 8 64 512 4096
+#   for i in 16 64 256 1024 2048 4096
 #   for i in 16 64 256 1024 2048 4096
 #   for i in 2048 4096 8192 16384 32768 65536
 #   for i in 2048 4096 8192 16384 32768
@@ -93,8 +94,8 @@ function run_wl_vary_size() {
 function run_wl_vary_thread() {
   # $1 == read portion: 1, 3, 5, 7, 9
   # $2 == field length (in bytes), 10, 100, 500, 1000, 5000, 10000 (cannot go beyond)
-  for thread in 2 4 6 8 10 12
-#  for thread in 2
+#  for thread in 2 4 6 8 10 12
+  for thread in 2
   do
      run_wl_5_times "$thread" "$1" "$2"
   done

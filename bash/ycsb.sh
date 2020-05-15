@@ -7,7 +7,15 @@
 # $5 == load | run | loadall
 
 hosts=10.142.0.11,10.142.0.12,10.142.0.13,10.142.0.15,10.142.0.16 #bsr
+#hosts=10.142.0.11,10.142.0.12,10.142.0.13 #bsr
+#hosts=10.142.0.122,10.142.0.123,10.142.0.124,10.142.0.125,10.142.0.126 #abd
+#hosts=10.142.0.122,10.142.0.123,10.142.0.124 #abd
 
+#load_read_cl=ONE
+#load_write_cl=ONE
+#run_read_cl=ONE
+#run_write_cl=ONE
+#
 load_read_cl=QUORUM
 load_write_cl=QUORUM
 run_read_cl=QUORUM
