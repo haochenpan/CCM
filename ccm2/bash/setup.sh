@@ -29,12 +29,7 @@ install_ycsb() {
 }
 
 install() {
-  if [[ "$1" == "ycsb" ]]; then
-    install_ycsb
-    return
-  fi
   case "$1" in
-
   abd | abdOpt)
     #    git clone https://github.com/ZezhiWang/cassandra.git
     git clone https://github.com/Dariusrussellkish/cassandra.git
@@ -58,5 +53,6 @@ install() {
 copy_key
 install_java
 install_basics
+install_ycsb
 install "$1"
 chmod +x $ccm2_path/bash/*
