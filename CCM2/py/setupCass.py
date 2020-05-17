@@ -1,7 +1,6 @@
 import subprocess
 import shlex
 import os, sys
-import conf
 
 branch_dict = {
     'ZezhiWang': ['abd', 'abdOpt', 'sbq'],
@@ -40,8 +39,8 @@ echo **********start**********
 # rm -rf ~/cassandra
 # cd && git clone {endpoint}
 cd ~/cassandra && git reset --hard && git checkout {branch}
-cp {"~/CCM2/res/build.xml"} .
-cp {"~/CCM2/res/build.properties.default"} .
+cp {"~/CCM/CCM2/res/build.xml"} .
+cp {"~/CCM/CCM2/res/build.properties.default"} .
 ant build
 git status
 cd

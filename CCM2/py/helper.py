@@ -19,7 +19,7 @@ def generate_cass_yaml():
         documents = yaml.dump(cassandra_yaml, outFile)
 
 generate_cass_yaml()
-os.system("cp ~/CCM2/stage/cassandra.yaml ~/cassandra/conf/")
+os.system("cp ~/CCM/CCM2/stage/cassandra.yaml ~/cassandra/conf/")
 
 # CREATE KEYSPACE ycsb WITH REPLICATION = {'class' : 'SimpleStrategy', 'replication_factor': 1};
 # CREATE TABLE ycsb.usertable ( y_id varchar primary key, field0 varchar);

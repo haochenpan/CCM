@@ -2,7 +2,7 @@
 
 copy_key() {
   mkdir -p ~/.ssh/
-  cat ~/CCM2/res/id.pub >>~/.ssh/authorized_keys
+  cat ~/CCM/CCM2/res/id.pub >>~/.ssh/authorized_keys
 }
 
 install_java() {
