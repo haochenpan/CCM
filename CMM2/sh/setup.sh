@@ -14,10 +14,12 @@ install_java() {
 install_basics() {
   sudo apt-get update && sudo apt-get upgrade -y
   sudo apt-get install -y build-essential linux-headers-$(uname -r)
-  sudo add-apt-repository ppa:deadsnakes/ppa --yes
-  sudo apt-get install -y python3.8
   sudo apt-get install -y make git zip ant python-pip python3-pip
-
+  sudo apt-get update -y
+  sudo add-apt-repository ppa:deadsnakes/ppa -y
+  sudo apt-get update -y
+  sudo apt-get install -y python3.6
+  sudo ln -s -f /usr/bin/python3.6 /usr/bin/python3
   cd
 }
 
@@ -32,5 +34,7 @@ copy_key
 install_java
 install_basics
 install_ycsb
-python3 ~/CCM2/py/setupCass.py "$1"
-chmod +x ~/CCM2/sh/*
+python3 ~/CCM/CCM2/py/setupCass.py "$1"
+chmod +x ~/CCM/CCM2/sh/*
+chmod +x ~/CCM/bash/*
+
